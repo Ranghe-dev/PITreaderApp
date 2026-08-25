@@ -1,0 +1,401 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="PITreaderApp.MainWindow"
+        Title="PITreader Studio"
+        Width="1000"
+        Height="700">
+
+	<DockPanel Margin="15">
+
+		<!-- Header -->
+
+		<Border DockPanel.Dock="Top"
+                Margin="0,0,0,15"
+                Padding="10">
+
+			<Grid ColumnDefinitions="*,Auto">
+
+				<TextBlock Text="PITreader Studio"
+                           FontSize="24"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"/>
+
+				<TextBlock Name="ConnectionStatusText"
+                           Grid.Column="1"
+                           Text="⚪ Non connesso"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"/>
+
+			</Grid>
+
+		</Border>
+
+		<TabControl>
+
+			<!-- Dashboard -->
+
+			<TabItem Header="Dashboard">
+
+				<ScrollViewer>
+
+					<Grid Margin="20"
+                          RowDefinitions="Auto,Auto,Auto"
+                          ColumnDefinitions="*,*"
+                          RowSpacing="20"
+                          ColumnSpacing="20">
+
+						<!-- Connessione -->
+
+						<Border Grid.Row="0"
+                                Grid.ColumnSpan="2"
+                                Padding="15"
+                                CornerRadius="10"
+                                BorderBrush="Gray"
+                                BorderThickness="1">
+
+							<StackPanel Spacing="10">
+
+								<TextBlock Text="Connessione"
+                                           FontSize="20"
+                                           FontWeight="Bold"/>
+
+								<TextBlock Text="Indirizzo IP"/>
+
+								<TextBox Name="IpTextBox"
+                                         Watermark="192.168.0.100"/>
+
+								<TextBlock Text="API Token"/>
+
+								<TextBox Name="TokenTextBox"/>
+
+								<StackPanel Orientation="Horizontal"
+                                            Spacing="10">
+
+									<Button Name="ConnectButton"
+                                            Width="140"
+                                            Content="Connetti"/>
+
+									<Button Name="SaveSettingsButton"
+                                            Width="140"
+                                            Content="Salva"/>
+
+								</StackPanel>
+
+								<TextBlock Name="ConnectionInfoText"
+                                           Text="In attesa di connessione..."/>
+
+							</StackPanel>
+
+						</Border>
+						<!-- Dispositivo -->
+
+						<Border Grid.Row="1"
+                                Grid.Column="0"
+                                Padding="15"
+                                CornerRadius="10"
+                                BorderBrush="Gray"
+                                BorderThickness="1">
+
+							<StackPanel Spacing="8">
+
+								<TextBlock Text="Dispositivo"
+                                           FontSize="18"
+                                           FontWeight="Bold"/>
+
+								<TextBlock Name="DashboardFirmwareText"
+                                           Text="Firmware: -"/>
+
+								<TextBlock Name="DashboardIpText"
+                                           Text="IP: -"/>
+
+							</StackPanel>
+
+						</Border>
+
+						<!-- LED -->
+
+						<Border Grid.Row="1"
+                                Grid.Column="1"
+                                Name="DashboardLedCard"
+                                Padding="15"
+                                CornerRadius="10"
+                                BorderBrush="Gray"
+                                BorderThickness="4"
+                                Background="#1A1A1A">
+
+							<StackPanel
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Spacing="10">
+
+								<TextBlock Text="LED"
+                                           FontSize="18"
+                                           FontWeight="Bold"/>
+
+								<TextBlock Name="LedTitleText"
+                                           FontSize="22"
+                                           FontWeight="Bold"
+                                           Text="Spento"/>
+
+								<TextBlock Name="LedModeText"
+                                           FontSize="16"
+                                           Text="Fisso"/>
+
+							</StackPanel>
+
+						</Border>
+
+						<!-- Transponder -->
+
+						<Border Grid.Row="2"
+                                Grid.Column="0"
+                                Padding="15"
+                                CornerRadius="10"
+                                BorderBrush="Gray"
+                                BorderThickness="1">
+
+							<StackPanel Spacing="8">
+
+								<TextBlock Text="Ultimo transponder"
+                                           FontSize="18"
+                                           FontWeight="Bold"/>
+
+								<TextBlock Name="DashboardAuthText"
+                                           Text="Autenticazione: -"/>
+
+								<TextBlock Name="DashboardSecurityText"
+                                           Text="Security ID: -"/>
+
+							</StackPanel>
+
+						</Border>
+
+						<!-- Ultimo evento -->
+
+						<Border Grid.Row="2"
+                                Grid.Column="1"
+                                Padding="15"
+                                CornerRadius="10"
+                                BorderBrush="Gray"
+                                BorderThickness="1">
+
+							<StackPanel Spacing="8">
+
+								<TextBlock Text="Ultimo evento"
+                                           FontSize="18"
+                                           FontWeight="Bold"/>
+
+								<TextBlock Name="DashboardLastEventText"
+                                           Text="Nessun evento"/>
+
+								<TextBlock Name="DashboardLastEventTimeText"
+                                           Text="--:--:--"/>
+
+							</StackPanel>
+
+						</Border>
+
+					</Grid>
+
+				</ScrollViewer>
+
+			</TabItem>
+			<!-- Monitor -->
+
+			<TabItem Header="Monitor">
+
+				<ScrollViewer>
+
+					<StackPanel Margin="20"
+                                Spacing="15">
+
+						<TextBlock Text="Monitor dispositivo"
+                                   FontSize="22"
+                                   FontWeight="Bold"/>
+
+						<Border Padding="15"
+                                CornerRadius="10"
+                                BorderBrush="Gray"
+                                BorderThickness="1">
+
+							<StackPanel Spacing="10">
+
+								<TextBlock Name="FirmwareText"
+                                           Text="Firmware: -"/>
+
+								<TextBlock Name="AuthenticatedText"
+                                           Text="Autenticato: -"/>
+
+								<TextBlock Name="SecurityIdText"
+                                           Text="Security ID: -"/>
+
+								<TextBlock Name="UidText"
+                                           Text="UID: -"/>
+
+								<TextBlock Name="PermissionText"
+                                           Text="Permesso: -"/>
+
+							</StackPanel>
+
+						</Border>
+
+					</StackPanel>
+
+				</ScrollViewer>
+
+			</TabItem>
+			<!-- LED -->
+
+			<TabItem Header="LED">
+
+				<Grid Margin="20">
+
+					<Border Name="LedStatusCard"
+                            Width="320"
+                            Height="170"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            CornerRadius="12"
+                            Background="#1A1A1A"
+                            BorderBrush="Gray"
+                            BorderThickness="4">
+
+						<StackPanel
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Spacing="12">
+
+							<TextBlock Text="LED PITreader"
+                                       FontSize="20"
+                                       FontWeight="Bold"/>
+
+							<TextBlock Name="DashboardLedText"
+                                       FontSize="26"
+                                       FontWeight="Bold"
+                                       Text="Spento"/>
+
+							<TextBlock Name="DashboardLedModeText"
+                                       FontSize="17"
+                                       Text="Modalità sconosciuta"/>
+
+						</StackPanel>
+
+					</Border>
+
+				</Grid>
+
+			</TabItem>
+
+			<!-- Registro -->
+
+			<TabItem Header="Registro">
+
+				<DockPanel Margin="20">
+
+					<StackPanel DockPanel.Dock="Top"
+                                Orientation="Horizontal"
+                                Spacing="10"
+                                Margin="0,0,0,15">
+
+						<Button Name="RefreshLogButton"
+                                Width="170"
+                                Content="Aggiorna registro"/>
+
+					</StackPanel>
+
+					<ScrollViewer>
+
+						<StackPanel Name="LogPanel"
+                                    Spacing="10"/>
+
+					</ScrollViewer>
+
+				</DockPanel>
+
+			</TabItem>
+			<!-- Configurazione -->
+
+			<TabItem Header="Configurazione">
+
+				<ScrollViewer>
+
+					<StackPanel Margin="20"
+                                Spacing="15">
+
+						<TextBlock Text="Configurazione"
+                                   FontSize="22"
+                                   FontWeight="Bold"/>
+
+						<Border Padding="15"
+                                CornerRadius="10"
+                                BorderBrush="Gray"
+                                BorderThickness="1">
+
+							<StackPanel Spacing="10">
+
+								<TextBlock Text="Questa sezione conterrà le impostazioni del programma."/>
+
+								<TextBlock Text="• Connessioni salvate"/>
+
+								<TextBlock Text="• Token API"/>
+
+								<TextBlock Text="• Preferenze"/>
+
+								<TextBlock Text="• Aggiornamenti"/>
+
+							</StackPanel>
+
+						</Border>
+
+					</StackPanel>
+
+				</ScrollViewer>
+
+			</TabItem>
+
+			<!-- Informazioni -->
+
+			<TabItem Header="Informazioni">
+
+				<Grid Margin="20">
+
+					<Border Padding="20"
+                            CornerRadius="10"
+                            BorderBrush="Gray"
+                            BorderThickness="1"
+                            MaxWidth="500"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+
+						<StackPanel Spacing="12">
+
+							<TextBlock Text="PITreader Studio"
+                                       FontSize="24"
+                                       FontWeight="Bold"
+                                       HorizontalAlignment="Center"/>
+
+							<Separator/>
+
+							<TextBlock Text="Versione 1.0"/>
+
+							<TextBlock Text="Client desktop sviluppato con Avalonia UI."/>
+
+							<TextBlock Text="Progetto dedicato alla gestione dei dispositivi Pilz PITreader."/>
+
+							<Separator/>
+
+							<TextBlock Text="© 2026"/>
+
+						</StackPanel>
+
+					</Border>
+
+				</Grid>
+
+			</TabItem>
+
+		</TabControl>
+
+	</DockPanel>
+
+</Window>
